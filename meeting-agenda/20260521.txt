@@ -1,0 +1,56 @@
+MEDIUM
+1/ The LoRA section (5) is labelled "Supplementary Experiments" but is never framed as exploratory or connected back to the two-track framework. Its purpose and relationship to the main contribution should be stated explicitly at the start of the section
+Hyunjoo
+
+3/ The fact that Track 1 is evaluated on TTS-generated speech is noted in Table 2 but never motivated as a design choice. A reader completing the paper can easily miss that the headline result is not measured on human speech. This needs justification in the experimental setup
+Young
+
+3/ Track 2 maps free-text greedy ASR output to the nearest of 10 digit labels by MiniLM cosine similarity. This should be compared against at minimum one simpler baseline: string edit distance to the canonical orthographic form of each digit. Without this, it is impossible to determine whether the MiniLM lookup adds anything over trivial text matching
+Adrianna
+
+4/ The SSDD evaluation covers approximately 37 minutes of audio. The TTS evaluation covers approximately 6 hours from a single speaker. None of the reported improvements include confidence intervals or significance tests. Given these dataset sizes, I could imagine that the observed differences may even fall within normal variance
+Mohamed
+
+
+
+
+
+
+HARD 
+5/ SER is computed as 1 âˆ’ cosine similarity in MiniLM embedding space. Track 2 directly maximises cosine similarity in MiniLM space to select its output. Reporting MiniLM-based SER as an evaluation metric for Track 2 output is self-referential
+Young
+
+1/ The 5-gram KenLM is sourced from a third-party HF repo. The paper does not state what text corpus was used to build it. If that corpus includes Bible-style or formal written Swahili the WER improvement on the Swahili Bible TTS evaluation set may primarily reflect domain-matched language modelling and not a general benefit of linguistic priors. This is a confound on the paper's main claim. The authors must document the LM training corpus. Ideally, they should also report Track 1 results on a 2nd evaluation domain to test whether the benefit generalises
+Adrianna
+
+3/ Neither evaluation set is compared against any published Swahili ASR result or a standard zero-shot model. Whisper (small or medium, zero-shot) is mentioned as future work but is publicly available now. Its absence means the reported numbers have no reference point and cannot be interpreted as strong, adequate, or poor performance
+Mohamed
+
+4/ The SSDD corpus was recorded at 8 kHz and upsampled to 16 kHz during preprocessing. Upsampling recovers no frequency content above 4 kHz and may introduce resampling artifacts. The degraded ASR performance on SSDD conflates bandwidth limitation with background noise. These two factors need to be at least discussed
+Hyunjoo
+
+
+
+
+EASY
+2/ The closed-set nature of Track 2 is the most important design constraint in the paper. It appears 1st in the limitations section (6). It must be stated clearly and upfront in the methodology (3.3), otherwise readers misread the scope of the contribution for several pages, as I did
+4/ Table 5 reports WER, CER, and SER for the TTS set. Table 6 reports only WER and "Accuracy" for SSDD. All three metrics should appear in both tables. The term "Accuracy" (= 1 âˆ’ WER) is nonstandard; WER alone is sufficient and less ambiguous
+Hyunjoo
+
+2/ The language model weight Î± and word insertion penalty Î² are among the most consequential parameters in CTC + n-gram decoding and are well known to require tuning. Neither value is reported anywhere in the paper. These must be stated
+Adrianna
+
+1/ Headline WER result is measured on single-speaker TTS speech w/ an undocumented (potentially domain-matched) LM. Until the LM corpus is disclosed and the result is replicated on human-recorded speech, this number should not be presented as a general finding about Swahili ASR
+Mohamed
+
+2/ A WER of 44.37% on a 10-class closed-set task is not strong performance. The paper should present this honestly rather than characterising it primarily as evidence of robustness
+Young
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+[TODO]
+
+REPRODUCIBILITY
+The datasets, acoustic model, and embedding model are all publicly available and named. Core training hyperparameters are reported. The main gaps preventing exact replication are: 
+(ii) KenLM training corpus undocumented; - it wasnt documented from their side as well 
+(iii) exact MiniLM variant not named; - 
+(iv) Pydub version and precise preprocessing call not given. These should all be added, either in the paper or in a linked repository. - gonna be mentioned 
+
+The model achieves 24.53% WER on the CommonVoice validation set but 31.79% greedy WER on the TTS evaluation set, despite TTS speech being cleaner and more regular than crowdsourced recordings. What accounts for this inversion? Is it attributable to domain mismatch, sampling rate differences, or another factor? - could be sampling rate with forceful resampling for 8, 16, 22(?)
+Mohamed
+
+
+
+SIGNIFICANCE 
+Each system component is a standard technique applied in a standard way. The two-track switching idea is the paper's most distinctive contribution, but the switch is a hard-coded design decision, not a learned / principled mechanism. The SER metric has potential value for morphologically rich languages but requires proper validation before it can be adopted by others. Current contribution is mostly an applied system study not a methodological advance. - it's not a full developed system. it's a strategy 
+
+Comparison with baseline 
+Hyun
+
+
+
+The ~10% WER gap between male and female speakers on SSDD is reported but not further analysed. Is this gap present uniformly across all ten digit classes, or concentrated on particular items? Does the gap narrow or widen after Track 2 post-processing? And is any speaker or regional metadata available that would allow a more fine-grained breakdown? - section 3.5.3 add a table showing gender ratio, mention that better meta data was not provided (to show that we were awareof lack of additional information)
+
+In addition, parts of the background sections appear only loosely connected to the experiments. - background information for more technological explanation, we have bit too much on Swahili language as itself
+Young
+
+
+The supplementary experiments also seem largely disconnected from the main contribution of the paper, making it difficult to understand how they support the central claims. - LoRA fine tuning on our model 
+Adrianna
+
+
+90% of the datset were used for training and 10% for testing. Was there not validation/development split or is it part of the training split? -> should find a reason why we used 90 10 OR do another experiment for 80 10 10

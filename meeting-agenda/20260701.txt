@@ -1,0 +1,5 @@
+track2 does not write for cosine similarity 
+•⁠  ⁠either chop/use leveshtein distance/other mothods
+•⁠  ⁠because digist don’t have semantic relations
+written swahili fine tuned model —> use this for evaluation 
+LoRA —> mention that we already tried in the paper?
